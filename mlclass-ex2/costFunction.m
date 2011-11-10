@@ -7,10 +7,6 @@ function [J, grad] = costFunction(theta, X, y)
 % Initialize some useful values
 m = length(y); % number of training examples
 
-% You need to return the following variables correctly 
-J = 0;
-grad = zeros(size(theta));
-
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.
 %               You should set J to the cost.
@@ -21,13 +17,13 @@ grad = zeros(size(theta));
 %
 
 % h(x) for every row in X, given theta
-predition = (1 ./ (1 + exp(-(theta' * X')')));
+pred = (sigmoid(theta' * X')');
 
 % cost function
 J = -1/m * ( y' * log(1 ./ (1 + exp(-(theta' * X')'))) + (1 - y)' * log( 1- (1 ./ (1 + exp(-(theta' * X')')))));
 
 % gradient
-grad = ((predition - y)' * X) / m;
+grad = ((pred - y)' * X) / m;
  
 % =============================================================
 
