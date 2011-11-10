@@ -20,13 +20,15 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+% h(x) for every row in X, given theta
+predition = (1 ./ (1 + exp(-(theta' * X')')));
 
+% cost function
+J = -1/m * ( y' * log(1 ./ (1 + exp(-(theta' * X')'))) + (1 - y)' * log( 1- (1 ./ (1 + exp(-(theta' * X')')))));
 
-
-
-
-
-
+% gradient
+grad = ((predition - y)' * X) / m;
+ 
 % =============================================================
 
 end
